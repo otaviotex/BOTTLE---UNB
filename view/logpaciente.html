@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paciente</title>
+    <link rel="stylesheet" href="/static/logpaciente.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Insira seus dados</h1>
+        <form action="/enviar" method="post" onsubmit="return validarFormulario()">
+            <input type="text" name="nome" id="nome" placeholder="Seu nome">
+            <input type="number" name ="numero" id="numero" placeholder="Seu numero"></input>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
