@@ -1,10 +1,19 @@
-function validarFormulario() {
-    const nome = document.getElementById('nome').value.trim();
-    const feedback = document.getElementById('feedback').value.trim();
+const VerEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!nome || !feedback) {
-        alert("Preencha todos os campos!");
+function validateFields() {
+    const email = document.getElementById("email").value;
+    const botao = document.getElementById("entrar");
+
+    botao.disabled = !VerEmail.test(email);
+}
+
+function validarFormulario() {
+    const email = document.getElementById("email").value;
+
+    if (!VerEmail.test(email)) {
+        alert("Por favor, insira um email válido!");
         return false;
     }
+
     return true;
 }
