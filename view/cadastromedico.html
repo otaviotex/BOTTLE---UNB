@@ -91,11 +91,11 @@
             <div class="senha">
                 <input type="password" 
                 name="senha" 
-                id="senha" 
+                id="senha3" 
                 placeholder="Crie Sua Senha"
                 required>
 
-                <span id="toggleSenha" class="icone-olho">👁️</span>
+                <span id="toggleSenha3" class="icone-olho">👁️</span>
             </div>
 
             <!-- Confirmar Senha -->
@@ -119,44 +119,7 @@
 
     </div>
 
-    <script>
-        function validarCadastro() {
-            const s1 = document.getElementById("senha").value.trim();
-            const s2 = document.getElementById("confirmar_senha").value.trim();
-
-            if (s1 !== s2) {
-                alert("As senhas não coincidem!");
-                return false;
-            }
-            return true;
-        }
-
-        const senhaInput = document.getElementById("senha");
-        const toggleSenhaBtn = document.getElementById("toggleSenha");
-
-        toggleSenhaBtn.addEventListener("click", () => {
-            if (senhaInput.type === "password") {
-                senhaInput.type = "text";
-                toggleSenhaBtn.textContent = "🙈";
-            } else {
-                senhaInput.type = "password";
-                toggleSenhaBtn.textContent = "👁️";
-            }
-        });
-
-        const senhaInput2 = document.getElementById("confirmar-senha");
-        const toggleSenhaBtn2 = document.getElementById("toggleSenha2");
-
-        toggleSenhaBtn2.addEventListener("click", () => {
-            if (senhaInput2.type === "password") {
-                senhaInput2.type = "text";
-                toggleSenhaBtn2.textContent = "🙈";
-            } else {
-                senhaInput2.type = "password";
-                toggleSenhaBtn2.textContent = "👁️";
-            }
-        });
-    </script>
+    <script src="/static/script.js" defer></script>
 
 </body>
 </html>
