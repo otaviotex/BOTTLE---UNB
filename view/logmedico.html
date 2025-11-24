@@ -44,32 +44,7 @@
 
     </div>
 
-    <script>
-    function validarMedico() {
-        const crm = document.getElementById("crm").value.trim();
-        const senha = document.getElementById("senha").value.trim();
-        return !(crm === "" || senha === "");
-    }
-
-    document.addEventListener("input", () => {
-        const crm = document.getElementById("crm").value.trim();
-        const senha = document.getElementById("senha").value.trim();
-        document.getElementById("entrar").disabled = !(crm && senha);
-    });
-
-    const senhaInput = document.getElementById("senha");
-    const toggleSenhaBtn = document.getElementById("toggleSenha");
-
-    toggleSenhaBtn.addEventListener("click", () => {
-        if (senhaInput.type === "password") {
-            senhaInput.type = "text";
-            toggleSenhaBtn.textContent = "🙈";
-        } else {
-            senhaInput.type = "password";
-            toggleSenhaBtn.textContent = "👁️";
-        }
-    });
-    </script>
+    <script src="/static/script.js" defer></script>
 
 </body>
 </html>
