@@ -101,12 +101,12 @@
             <!-- Confirmar Senha -->
             <div class="senha">
                 <input type="password"
-                    name="confirmar_senha"
-                    id="confirmar_senha"
+                    name="confirmar-senha"
+                    id="confirmar-senha"
                     placeholder="Confirme sua senha"
                     required>
                     
-                <span id="toggleSenha" class="icone-olho">👁️</span>
+                <span id="toggleSenha2" class="icone-olho">👁️</span>
             </div>
             <button type="submit">Cadastrar</button>
         </form>
@@ -141,6 +141,19 @@
             } else {
                 senhaInput.type = "password";
                 toggleSenhaBtn.textContent = "👁️";
+            }
+        });
+
+        const senhaInput2 = document.getElementById("confirmar-senha");
+        const toggleSenhaBtn2 = document.getElementById("toggleSenha2");
+
+        toggleSenhaBtn2.addEventListener("click", () => {
+            if (senhaInput2.type === "password") {
+                senhaInput2.type = "text";
+                toggleSenhaBtn2.textContent = "🙈";
+            } else {
+                senhaInput2.type = "password";
+                toggleSenhaBtn2.textContent = "👁️";
             }
         });
     </script>
