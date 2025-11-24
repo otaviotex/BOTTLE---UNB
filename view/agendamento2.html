@@ -19,6 +19,7 @@
             <input type="hidden" name="idade" value="{{idade}}">
             <input type="hidden" name="convenio" value="{{convenio}}">
             <input type="hidden" name="especialidade" value="{{especialidade}}">
+            <input type="hidden" name="email" value="{{email}}">
 
             <!-- DATA (bloqueia datas passadas automaticamente) -->
             <input type="date" name="data" id="dataConsulta" required>
@@ -74,9 +75,12 @@
             Voltar
         </button>
 
+        <p style="margin-top: 15px;">
+            <a href="/minhas_consultas?email={{email}}">Ver minhas consultas</a>
+        </p>
+
     </div>
 
-    <!-- Bloqueia datas passadas -->
     <script>
         const hoje = new Date().toISOString().split("T")[0];
         document.getElementById("dataConsulta").setAttribute("min", hoje);
