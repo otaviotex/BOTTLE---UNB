@@ -8,25 +8,18 @@ import os
 TEMPLATE_PATH.insert(0, './view')
 
 
-# ===========================================
-#  ARQUIVOS ESTÁTICOS
-# ===========================================
 @route('/static/<filepath:path>')
 def server_static(filepath):
     return static_file(filepath, root='./static')
 
 
-# ===========================================
-#  PÁGINA INICIAL
-# ===========================================
+
 @route('/')
 def home():
     return template('view/agend.html')
 
 
-# ===========================================
-#  ÁREA DO MÉDICO
-# ===========================================
+
 @route('/medico')
 def medico():
     return template('view/logmedico.html')
@@ -55,7 +48,7 @@ def login_medico_post():
         return "<h2>Senha incorreta!</h2><a href='/medico'>Voltar</a>"
 
 
-# ---------- CADASTRO DO MÉDICO ----------
+
 @route('/cadastro_medico')
 def cadastro_medico():
     return template('view/cadastromedico.html')
@@ -95,9 +88,7 @@ def salvar_medico():
     """
 
 
-# ===========================================
-#  ÁREA DO PACIENTE
-# ===========================================
+
 @route('/paciente')
 def paciente():
     return template('view/logpaciente.html')
@@ -111,9 +102,6 @@ def enviar_paciente():
     return template('view/agendamento1.html', nome=nome, telefone=telefone, email=email)
 
 
-# ===========================================
-#  AGENDAMENTO 
-# ===========================================
 @route('/agendamento')
 def agendamento():
 
@@ -126,6 +114,22 @@ def agendamento():
     especialidades = [e[0] for e in especialidades]
 
     return template('view/agendamento1.html', especialidades=especialidades)
+
+@route('/minhas_consultas')
+def minhas_consultas():
+    email = request.query.get('email') 
+    consultas = session.query(Agendamento).filter_by(email=email).order_by(Agendamento.data, Agendamento.hora).all()
+    return template('view/minhas_consultas.html', consultas=consultas)
+
+@route('/cancelar_consulta/<id:int>', method='POST')
+def cancelar_consulta(id):
+    consulta = session.query(Agendamento).filter_by(id=id).first()
+    if consulta:
+        session.delete(consulta)
+        session.commit()
+        return "<h2>Consulta cancelada com sucesso!</h2><a href='/minhas_consultas?email={0}'>Voltar</a>".format(consulta.email)
+    else:
+        return "<h2>Consulta não encontrada!</h2><a href='/minhas_consultas'>Voltar</a>"
 
 
 @route('/agendamento_etapa1', method='POST')
@@ -149,9 +153,6 @@ def agendamento_etapa1_post():
     )
 
 
-# ===========================================
-#  AGENDAMENTO 
-# ===========================================
 @route('/agendamento_data')
 def agendamento_data():
     return template('view/agendamento2.html')
@@ -166,6 +167,7 @@ def confirmar_agendamento():
     especialidade = request.forms.get('especialidade')
     data = request.forms.get('data')
     hora = request.forms.get('hora')
+    email = request.forms.get('email')    
 
     data_conv = datetime.strptime(data, "%Y-%m-%d").date()
     hora_conv = datetime.strptime(hora, "%H:%M").time()
@@ -176,7 +178,8 @@ def confirmar_agendamento():
         convenio=convenio,
         especialidade=especialidade,
         data=data_conv,
-        hora=hora_conv
+        hora=hora_conv,
+        email = email
     )
 
     session.add(novo)
