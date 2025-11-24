@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Minhas Consultas</title>
+    <link rel="stylesheet" href="/static/agendamento.css">
+</head>
+<body>
+
+<h1>Minhas Consultas</h1>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Data</th>
+        <th>Hora</th>
+        <th>Especialidade</th>
+        <th>Convênio</th>
+        <th>Ações</th>
+    </tr>
+    % for c in consultas:
+    <tr>
+        <td>{{c.data}}</td>
+        <td>{{c.hora}}</td>
+        <td>{{c.especialidade}}</td>
+        <td>{{c.convenio}}</td>
+        <td>
+            <form action="/cancelar_consulta/{{c.id}}" method="post" 
+                  onsubmit="return confirm('Deseja realmente cancelar esta consulta?');">
+                <button type="submit">Cancelar</button>
+            </form>
+        </td>
+    </tr>
+    % end
+</table>
+
+<br>
+<a href="/paciente">Voltar</a>
+
+</body>
+</html>
